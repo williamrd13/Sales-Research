@@ -10,4 +10,8 @@ A Seasonal Autoregressive Integrated Moving Average (SARIMA) model has 7 paramte
 
 The first thing to do is to read data from excel and make it to be workable time-series data. This could be done using "read_excel" and "set_index" functions. Then I pull out ACF and PACF plots to see what the model parameters would look like. The ACF plot shows very significant values in period 1,7, and 14. This suggests parameters "q" and "Q" to be 1 and 2. The PACF plot shows very significant values in period 1, 2 (-), 6, 7, 8 (-). This suggests parameters "p" and "P" to be 1 and 1, and it is likely the data is non-stationary. After I split training sest and test set, the Augmented Dickey-Fuller (ADF) test shows that d(1) and (d,D)(1,1) are stationary. I would examine d(1) data by setting d=1. 
 
-Now I set max values before iterations. I would set max_range_list = [2,1,2,1,0,2] with seasonality = 7. 
+Now I set max values before iterations. I would set max_range_list = [2,1,2,1,0,2] with seasonality = 7. It iterates over every parameter from zero to its own max value. Then the result table will be sorted by AIC and test MSE independently. I also apply Breusch-Godfrey test within the process and try to avoid serially correlated model by excluding the results which are significant for the BG test.
+
+### Result
+
+SARIMA model [1,1,1,1,0,2] with s=7 is the best in terms of both AIC and test MSE. It also matches with our observations in the PACF plot and the ACF plot. I will select that model and compare the predicted result based on the training set and the actual result (test set). They line up reasonably well. Finally, I predict the expected sales of a couple of future days.
