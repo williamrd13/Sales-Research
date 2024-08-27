@@ -15,3 +15,5 @@ Now I set max values before iterations. I would set max_range_list = [2,1,2,1,0,
 ### Result
 
 SARIMA model [1,1,1,1,0,2] with s=7 is the best in terms of both AIC and test MSE. It also matches with our observations in the PACF plot and the ACF plot. I will select that model and compare the predicted result based on the training set and the actual result (test set). They line up reasonably well. Finally, I predict the expected sales of a couple of future days.
+
+Report errors and bugs to williamrd13 or ncpareedwilliamren@gmail.com
